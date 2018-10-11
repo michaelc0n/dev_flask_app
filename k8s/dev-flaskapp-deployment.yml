@@ -1,0 +1,31 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: dev-flaskapp
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: dev-flaskapp
+    spec:
+      containers:
+      - image: michaelc0n/dev-flaskapp:1.0
+        name: dev-flaskapp
+        ports:
+        - containerPort: 8000
+
+---
+
+kind: Service
+apiVersion: v1
+metadata:
+  name: dev-flaskapp-svc
+spec:
+  selector:
+    app: dev-flaskapp
+  type: NodePort
+  ports:
+  - protocol: TCP
+    port: 8000 # change to port 80 for non NodePort && uncomment below
+    #targetPort: 8000

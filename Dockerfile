@@ -1,4 +1,3 @@
-# Multi-stage Build
 FROM alpine:3.8
 
 RUN apk add --no-cache python3 && \
@@ -24,5 +23,5 @@ USER flaskapp
 EXPOSE 8000 
 CMD gunicorn -b :8000 -w 4 wsgi:app
 
-#docker build -t flaskapp:latest .
-#docker run --name flaskapp -d -p 8000:8000 --rm flaskapp:latest
+#docker build -t flaskapp:1.0 .
+#docker run --name flaskapp -d -p 8000:8000 --rm flaskapp:1.0
